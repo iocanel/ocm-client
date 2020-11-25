@@ -14,11 +14,11 @@
     <generator.library>jersey2</generator.library>
 
     <generator.package.name>io.fabric8.ocm</generator.package.name>
-    <generator.model.package.name>io.fabric8.ocm.model.${artifactId}</generator.model.package.name>
-    <generator.api.package.name>io.fabric8.ocm.api.${artifactId}</generator.api.package.name>
+    <generator.model.package.name>io.fabric8.ocm.model.${project.artifactId}</generator.model.package.name>
+    <generator.api.package.name>io.fabric8.ocm.api.${project.artifactId}</generator.api.package.name>
 
-    <java.source>1.8</java.source>
-    <java.target>1.8</java.target>
+    <java.source>11</java.source>
+    <java.target>11</java.target>
     <!-- versions -->
     <sundrio.version>0.21-SNAPSHOT</sundrio.version>
     <jackson.version>2.8.9</jackson.version>
@@ -43,6 +43,8 @@
   <modules>
     <module>core</module>
     <module>apis</module>
+    <module>clients</module>
+    <module>examples</module>
   </modules>
 
   <dependencyManagement>
@@ -74,6 +76,13 @@
 
 
   <profiles>
+    <profile>
+      <id>generators</id>
+      <modules>
+        <module>generators</module>
+      </modules>
+    </profile>
+
     <profile>
       <id>jersey2</id>
 

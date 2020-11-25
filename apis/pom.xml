@@ -15,99 +15,10 @@
   <version>0.1-SNAPSHOT</version>
   <name>Fabric8 :: OCM :: APIs</name>
 
-  <properties>
-    <swagger.codegen.skip>true</swagger.codegen.skip>
-  </properties>
-  
   <modules>
-    <module>accountsmgmt-v1</module>
-    <module>authorizations-v1</module>
-    <module>clustersmgmt-v1</module>
-    <module>servicelogs-v1</module>
+    <module>api-accountsmgmt-v1</module>
+    <module>api-authorizations-v1</module>
+    <module>api-clustersmgmt-v1</module>
+    <module>api-servicelogs-v1</module>
   </modules>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>${build-helper-plugin.version}</version>
-        <inherited>true</inherited>
-        <executions>
-          <execution>
-            <id>create-api-package-name</id>
-            <goals>
-              <goal>regex-property</goal>
-            </goals>
-            <configuration>
-              <name>generator.api.package</name>
-              <value>${groupId}.ocm.api.${artifactId}</value>
-              <regex>-</regex>
-              <replacement>.</replacement>
-              <failIfNoMatch>false</failIfNoMatch>
-            </configuration>
-          </execution>
-          <execution>
-            <id>create-model-package-name</id>
-            <goals>
-              <goal>regex-property</goal>
-            </goals>
-            <configuration>
-              <name>generator.model.package</name>
-              <value>${groupId}.ocm.model.${artifactId}</value>
-              <regex>-</regex>
-              <replacement>.</replacement>
-              <failIfNoMatch>false</failIfNoMatch>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>io.swagger.codegen.v3</groupId>
-        <artifactId>swagger-codegen-maven-plugin</artifactId>
-        <version>${swagger-codegen.version}</version>
-        <inherited>true</inherited>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <skip>${swagger.codegen.skip}</skip>
-              <inputSpec>${project.basedir}/openapi.json</inputSpec>
-              <language>${generator.lang}</language>
-              <configOptions>
-                <library>${generator.library}</library>
-                <generateBuilders>true</generateBuilders>
-                <builderArtifact>io.fabric8:ocm-core:${project.version}</builderArtifact>
-                <builderPackage>io.fabric8.ocm.builder</builderPackage>
-                <sortParamsByRequiredFlag>true</sortParamsByRequiredFlag>
-                <modelPackage>${generator.model.package}</modelPackage>
-                <apiPackage>${generator.api.package}</apiPackage>
-                <ensureUniqueParams>true</ensureUniqueParams>
-                <sourceFolder>src/main/java</sourceFolder>
-                <localVariablePrefix />
-                <serializableModel>false</serializableModel>
-                <bigDecimalAsString>false</bigDecimalAsString>
-                <fullJavaUtil>false</fullJavaUtil>
-                <hideGenerationTimestamp>false</hideGenerationTimestamp>
-                <useRxJava>false</useRxJava>
-                <threetenbp>false</threetenbp>
-                <dateLibrary>java8-localdatetime</dateLibrary>
-              </configOptions>
-              <output>${generator.output.path}</output>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>io.sundr</groupId>
-            <artifactId>sundr-swagger</artifactId>
-            <version>${sundrio.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-    </plugins>
-  </build>
-
 </project>
