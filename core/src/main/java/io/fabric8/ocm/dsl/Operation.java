@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 The original authors.
+ * Copyright 2020 The original authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,4 +19,5 @@ package io.fabric8.ocm.dsl;
 
 public interface Operation<T, R extends Resource> extends WithName<R>, FindOrOrderedByOrSizeOrPageOrWhere<T>, CreateOrReplace<T> {
   
+
 }

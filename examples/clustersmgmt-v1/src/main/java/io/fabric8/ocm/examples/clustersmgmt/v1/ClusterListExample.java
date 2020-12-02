@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 The original authors.
+ * Copyright 2020 The original authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ public class ClusterListExample {
 
     DefaultClustersMgmgtClient client = new DefaultClustersMgmgtClient(OcmConfig.getConfig());
     List<Cluster> clusters = client.clusters().find();
-    client.clusters().where("name like my-%").
     if (clusters.isEmpty()) {
       System.out.println("No clusters found!");
     } else {

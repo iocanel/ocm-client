@@ -8,6 +8,7 @@
   <name>Fabric8 :: OCM :: Project</name>
 
   <properties>
+    <format.skip>false</format.skip>
     <!-- Swagger Configuration -->
     <swagger.codegen.skip>true</swagger.codegen.skip>
     <generator.lang>java</generator.lang>
@@ -36,8 +37,14 @@
     <threetenbp.version>1.3.5</threetenbp.version>
     <junit-version>4.13.1</junit-version>
 
+    <!-- Plugins -->
     <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
     <build-helper-plugin.version>3.2.0</build-helper-plugin.version>
+     <!-- Formatting Plugins -->
+
+     <license-maven-plugin.version>3.0</license-maven-plugin.version>
+    <formatter-maven-plugin.version>2.12.2</formatter-maven-plugin.version>
+    <impsort-maven-plugin.version>1.4.1</impsort-maven-plugin.version>
   </properties>
 
   <modules>
@@ -71,6 +78,52 @@
           <target>${java.target}</target>
         </configuration>
       </plugin>
+       <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>${license-maven-plugin.version}</version>
+        <inherited>true</inherited>
+        <configuration>
+          <aggregate>true</aggregate>
+          <header>header.txt</header>
+          <properties>
+            <owner>Original authors</owner>
+          </properties>
+          <includes>
+            <include>**/*.java</include>
+            <include>**/*.groovy</include>
+          </includes>
+          <executions>
+            <execution>
+                <goals>
+                    <goal>format</goal>
+                </goals>
+            </execution>
+        </executions>
+        </configuration>
+      </plugin>
+       <plugin>
+        <groupId>net.revelc.code.formatter</groupId>
+        <artifactId>formatter-maven-plugin</artifactId>
+        <version>${formatter-maven-plugin.version}</version>
+        <configuration>
+          <configFile>${maven.multiModuleProjectDirectory}/.code-format.xml</configFile>
+          <lineEnding>LF</lineEnding>
+          <skip>${format.skip}</skip>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>net.revelc.code</groupId>
+        <artifactId>impsort-maven-plugin</artifactId>
+        <version>${impsort-maven-plugin.version}</version>
+        <configuration>
+          <groups>java.,javax.,org.,com.</groups>
+          <staticGroups>*</staticGroups>
+          <skip>${format.skip}</skip>
+          <removeUnused>true</removeUnused>
+        </configuration>
+      </plugin>     
     </plugins>
   </build>
 

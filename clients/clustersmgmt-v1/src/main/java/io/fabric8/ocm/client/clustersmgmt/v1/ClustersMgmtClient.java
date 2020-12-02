@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 The original authors.
+ * Copyright 2020 The original authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,23 +28,20 @@ import io.fabric8.ocm.dsl.Operation;
 import io.fabric8.ocm.dsl.ReadOnlyOperation;
 import io.fabric8.ocm.dsl.ReadOnlyResource;
 import io.fabric8.ocm.dsl.Resource;
-import io.fabric8.ocm.model.clustersmgmt.v1.AWSInfrastructureAccessRole;
 import io.fabric8.ocm.model.clustersmgmt.v1.AWSInfrastructureAccessRoleGrant;
-import io.fabric8.ocm.model.clustersmgmt.v1.AddOn;
+import io.fabric8.ocm.model.clustersmgmt.v1.AddOnInstallation;
 import io.fabric8.ocm.model.clustersmgmt.v1.CloudProvider;
 import io.fabric8.ocm.model.clustersmgmt.v1.CloudRegion;
 import io.fabric8.ocm.model.clustersmgmt.v1.Cluster;
 import io.fabric8.ocm.model.clustersmgmt.v1.Group;
 import io.fabric8.ocm.model.clustersmgmt.v1.Ingress;
 import io.fabric8.ocm.model.clustersmgmt.v1.Label;
-import io.fabric8.ocm.model.clustersmgmt.v1.Log;
 import io.fabric8.ocm.model.clustersmgmt.v1.Syncset;
 import io.fabric8.ocm.model.clustersmgmt.v1.User;
 
 public interface ClustersMgmtClient extends Client<OcmConfig> {
   
     void login();
-
 
     ReadOnlyOperation<CloudProvider, ReadOnlyResource<CloudProvider>> cloudProviders();
     CloudProviderOperation<CloudRegion, ReadOnlyResource<CloudRegion>> cloudRegions();
@@ -53,13 +50,11 @@ public interface ClustersMgmtClient extends Client<OcmConfig> {
 
     ClusterReadOnlyOperation<Group, ReadOnlyResource<Group>> groups();
     GroupOperation<User, Resource<User>> users();
-    ClusterOperation<AddOn, Resource<AddOn>> addOns();
+    ClusterOperation<AddOnInstallation, Resource<AddOnInstallation>> addOns();
     ClusterOperation<Ingress, Resource<Ingress>> ingresses();
-
 
     ClusterOperation<Label, Resource<Label>> labels();
     ClusterOperation<Syncset, Resource<Syncset>> syncsets();
-    ClusterOperation<AWSInfrastructureAccessRole, Resource<AWSInfrastructureAccessRole>> awsInfraAccessRoles();
     ClusterOperation<AWSInfrastructureAccessRoleGrant, Resource<AWSInfrastructureAccessRoleGrant>> awsInfraAccessRoleGrants();
 
 }

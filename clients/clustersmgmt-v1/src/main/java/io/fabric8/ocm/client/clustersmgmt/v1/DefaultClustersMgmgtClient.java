@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 The original authors.
+ * Copyright 2020 The original authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,13 @@ import io.fabric8.ocm.client.clustersmgmt.v1.dsl.ClusterOperation;
 import io.fabric8.ocm.client.clustersmgmt.v1.dsl.ClusterReadOnlyOperation;
 import io.fabric8.ocm.client.clustersmgmt.v1.dsl.ClusterResource;
 import io.fabric8.ocm.client.clustersmgmt.v1.dsl.GroupOperation;
+import io.fabric8.ocm.client.clustersmgmt.v1.impl.AWSInfrastructureAccessRoleGrantsOperationImpl;
+import io.fabric8.ocm.client.clustersmgmt.v1.impl.AddOnsOperationImpl;
 import io.fabric8.ocm.client.clustersmgmt.v1.impl.CloudProvidersOperationImpl;
 import io.fabric8.ocm.client.clustersmgmt.v1.impl.CloudRegionsOperationImpl;
 import io.fabric8.ocm.client.clustersmgmt.v1.impl.ClustersOperationImpl;
 import io.fabric8.ocm.client.clustersmgmt.v1.impl.GroupsOperationImpl;
+import io.fabric8.ocm.client.clustersmgmt.v1.impl.IngressesOperationImpl;
 import io.fabric8.ocm.client.clustersmgmt.v1.impl.LabelsOperationImpl;
 import io.fabric8.ocm.client.clustersmgmt.v1.impl.SyncsetsOperationImpl;
 import io.fabric8.ocm.client.clustersmgmt.v1.impl.UsersOperationImpl;
@@ -37,16 +40,14 @@ import io.fabric8.ocm.dsl.Operation;
 import io.fabric8.ocm.dsl.ReadOnlyOperation;
 import io.fabric8.ocm.dsl.ReadOnlyResource;
 import io.fabric8.ocm.dsl.Resource;
-import io.fabric8.ocm.model.clustersmgmt.v1.AWSInfrastructureAccessRole;
 import io.fabric8.ocm.model.clustersmgmt.v1.AWSInfrastructureAccessRoleGrant;
-import io.fabric8.ocm.model.clustersmgmt.v1.AddOn;
+import io.fabric8.ocm.model.clustersmgmt.v1.AddOnInstallation;
 import io.fabric8.ocm.model.clustersmgmt.v1.CloudProvider;
 import io.fabric8.ocm.model.clustersmgmt.v1.CloudRegion;
 import io.fabric8.ocm.model.clustersmgmt.v1.Cluster;
 import io.fabric8.ocm.model.clustersmgmt.v1.Group;
 import io.fabric8.ocm.model.clustersmgmt.v1.Ingress;
 import io.fabric8.ocm.model.clustersmgmt.v1.Label;
-import io.fabric8.ocm.model.clustersmgmt.v1.Log;
 import io.fabric8.ocm.model.clustersmgmt.v1.Syncset;
 import io.fabric8.ocm.model.clustersmgmt.v1.User;
 
@@ -123,26 +124,17 @@ public class DefaultClustersMgmgtClient implements ClustersMgmtClient {
   }
 
   @Override
-  public ClusterOperation<AWSInfrastructureAccessRole, Resource<AWSInfrastructureAccessRole>> awsInfraAccessRoles() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
   public ClusterOperation<AWSInfrastructureAccessRoleGrant, Resource<AWSInfrastructureAccessRoleGrant>> awsInfraAccessRoleGrants() {
-    // TODO Auto-generated method stub
-    return null;
+    return new AWSInfrastructureAccessRoleGrantsOperationImpl(api);
   }
 
   @Override
-  public ClusterOperation<AddOn, Resource<AddOn>> addOns() {
-    // TODO Auto-generated method stub
-    return null;
+  public ClusterOperation<AddOnInstallation, Resource<AddOnInstallation>> addOns() {
+    return new AddOnsOperationImpl(api);
   }
 
   @Override
   public ClusterOperation<Ingress, Resource<Ingress>> ingresses() {
-    // TODO Auto-generated method stub
-    return null;
+    return new IngressesOperationImpl(api);
   }
 }
