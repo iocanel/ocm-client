@@ -15,7 +15,7 @@
   <dependencies>
     <dependency>
       <groupId>io.fabric8</groupId>
-      <artifactId>servicelogs-v1</artifactId>
+      <artifactId>client-servicelogs-v1</artifactId>
       <version>${project.version}</version>
     </dependency>
 

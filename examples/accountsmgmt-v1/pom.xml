@@ -15,7 +15,7 @@
   <dependencies>
     <dependency>
       <groupId>io.fabric8</groupId>
-      <artifactId>accountsmgmt-v1</artifactId>
+      <artifactId>client-accountsmgmt-v1</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
