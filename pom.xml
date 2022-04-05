@@ -138,7 +138,9 @@
 
     <profile>
       <id>jersey2</id>
-
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <properties>
         <generator.lang>java</generator.lang>
         <generator.library>jersey2</generator.library>
